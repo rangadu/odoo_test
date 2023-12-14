@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<template xml:space="preserve">
+    <t t-name="HrAttendanceCheckProjectSection">
+        <!--Adding project drop down if attendance_state is checked_out-->
+        <t t-if="widget.employee.attendance_state=='checked_out'">
+            <div class="flex-grow-1">
+                <label class="form-label" for="project_id">Project</label>
+                <select class="form-select col-sm-6" id="project_id" name="project_id">
+                    <option value="">Please Select a Project</option>
+                    <t t-foreach="widget.project_ids" t-as="project">
+                        <option t-att-value="project.id"><t t-out="project.name"/></option>
+                    </t>
+                </select>
+            </div>
+        </t>
+
+        <!--Adding task drop down if attendance_state is checked_out-->
+        <t t-if="widget.employee.attendance_state=='checked_out'">
+            <div class="flex-grow-1">
+                <label class="form-label col-sm-6" for="task_id">Task</label>
+                <select class="form-select" name="task_id" id="task_id">
+                    <option value="">Please Select a Task</option>
+                </select>
+            </div>
+        </t>
+
+        <div class="flex-grow-1">
+            <label class="form-label col-sm-6" for="description">Description</label>
+            <input class="form-control" id="description" name="description" type="text"/>
+        </div>
+    </t>
+
+    <!--Inherit HrAttendanceMyMainMenu qweb template and added project section before the checkIn / checkOut button-->
+    <t t-extend="HrAttendanceMyMainMenu">
+        <t t-jquery="t[t-call='HrAttendanceCheckInOutButtons']" t-operation="before">
+            <t t-call="HrAttendanceCheckProjectSection"/>
+        </t>
+    </t>
+</template>

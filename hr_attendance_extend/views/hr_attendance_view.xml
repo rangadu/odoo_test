@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!--Inherit attendance tree view-->
+    <record id="view_attendance_tree" model="ir.ui.view">
+        <field name="name">hr.attendance.tree.inherit.hr_attendance_extend</field>
+        <field name="model">hr.attendance</field>
+        <field name="inherit_id" ref="hr_attendance.view_attendance_tree" />
+        <field name="arch" type="xml">
+            <!--Adding project_id and task_id fields to the tree view-->
+            <field name="employee_id" position="after">
+                <field name="project_id"/>
+                <field name="task_id"/>
+            </field>
+
+            <!--Adding check_in_description field to the tree view-->
+            <field name="check_in" position="after">
+                <field name="check_in_description"/>
+            </field>
+
+            <!--Adding check_out_description field to the tree view-->
+            <field name="check_out" position="after">
+                <field name="check_out_description"/>
+            </field>
+        </field>
+    </record>
+
+    <!--Inherit attendance form view and added project_id, task_id and check in / out descriptions-->
+    <record id="hr_attendance_view_form" model="ir.ui.view">
+        <field name="name">hr.attendance.form.inherit.hr_attendance_extend</field>
+        <field name="model">hr.attendance</field>
+        <field name="inherit_id" ref="hr_attendance.hr_attendance_view_form" />
+        <field name="arch" type="xml">
+            <!--Adding project_id and task_id fields to the tree view-->
+            <field name="employee_id" position="after">
+                <field name="project_id"/>
+                <field name="task_id"/>
+            </field>
+
+            <!--Adding check_in_description field to the tree view-->
+            <field name="check_in" position="after">
+                <field name="check_in_description"/>
+            </field>
+
+            <!--Adding check_out_description field to the tree view-->
+            <field name="check_out" position="after">
+                <field name="check_out_description"/>
+            </field>
+        </field>
+    </record>
+</odoo>
